@@ -1,0 +1,77 @@
+/* File Name: Assignment 2: Express Portfolio - Authentication
+Student Name: Steven Chen
+Student Number: 301159710
+Date: May 31, 2021 */
+
+body {
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+	color: #00b7ff;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.page-title {
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+.grid-services {
+	display: grid;
+	grid: auto / repeat(2, 1fr);
+	gap: 50px;
+}
+
+.grid-services > li {
+	display: grid;
+	place-items: center;
+	gap: 20px;
+}
+
+.grid-services > li > span {
+	font-size: 1.5em;
+}
+
+.grid-services img {
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+}
+
+.grid-projects {
+	display: grid;
+	gap: 50px;
+}
+
+.grid-project {
+	display: grid;
+	grid: auto / 2fr 1fr;
+	gap: 50px;
+}
+
+.grid-project img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+}
+
+form {
+	margin-bottom: 5px;
+}
+
+form > div {
+	gap: 15px;
+}
+
+.jumbotron {
+	padding: 2rem 1rem;
+	margin-bottom: 2rem;
+	background-color: #e9ecef;
+	border-radius: 0.3rem;
+}
