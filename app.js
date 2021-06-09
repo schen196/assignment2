@@ -13,7 +13,7 @@ var passport = require('passport');
 
 var indexRouter = require("./routes/index");
 var mongooseRouter = require("./config/mongoose");
-
+//
 var app = express();
 
 // view engine setup
