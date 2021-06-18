@@ -3,53 +3,33 @@
 // Student Number: 301159710
 // Date: May 31, 2021
 
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+const passport = require("passport");
+let router = express.Router();
 
+let indexController = require("../controllers/index");
 
 /* GET home page. */
-router.get("/", (req, res) => {
-	res.render("pages/homepage");
-});
+router.get("/", indexController.displayHomePage);
 
 /* GET about page. */
-router.get("/about", (req, res) => {
-	res.render("pages/about");
-});
+router.get("/about", indexController.displayAbout);
 
 /* GET contact page. */
-router.get("/contact", (req, res) => {
-	res.render("pages/contact");
-});
+router.get("/contact", indexController.displayContact);
 
 /* GET services page. */
-router.get("/services", (req, res) => {
-	res.render("pages/services");
-});
+router.get("/services", indexController.displayServices);
+	
 
 /* GET projects page. */
-router.get("/projects", (req, res) => {
-	res.render("pages/projects");
-});
+router.get("/projects", indexController.displayProjects);
+	
 
 /* GET register page. */
-router.get("/register", (req, res) => {
-	res.render("pages/register");
-});
-
-router.post('/register', (req, res) => {
-	req.body.username;
-});
+router.get("/register", indexController.displayRegister);
 
 /* GET login page. */
-router.get("/login", (req, res) => {
-	res.render("pages/login");
-});
+router.get("/login", indexController.displayLogin);
 
-
-router.post('/login', (req, res) => {
-
-});
-
-router.use(express.urlencoded({ extended: false}))
 module.exports = router;

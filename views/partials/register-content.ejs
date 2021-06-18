@@ -1,25 +1,25 @@
 <!-- register content -->
-<main>
-	<div class="jumbotron">
-		<h1 class="page-title">Register an Account</h1>
-		<div>
-			<form method="app.get" action="/" >
-				<div class="row g-3">
-					<div class="col-auto" id="username">
-					  <input type="text" class="form-control" placeholder="Username" required>
-					</div>
-					<div class="col-auto" id="password">
-					  <input type="password" class="form-control" placeholder="Password" required>
-					</div>
-					<div class="col-auto" id="confirmPassword">
-					  <input type="password" class="form-control" placeholder="Confirm Password" required>
-					</div>
-
-				<div>
-					<button class="btn btn-primary" type="submit">Send Message</button>
-					<button class="btn btn-primary" type="reset">Clear Form</button>
+<main class="container">
+	<!-- Message Area -->
+	
+	<div class="row">
+		<div class="offset-md-4 col md-4">Please Login</div>
+		<form action="" method="POST" autocomplete="off">
+			<div class="row g-3">
+				<div class="col-auto" id="username">
+				  <input type="text" class="form-control" placeholder="Username" required>
 				</div>
-			</form>
-		</div>
+				<div class="col-auto" id="password">
+				  <input type="password" class="form-control" placeholder="Password" required>
+				</div>
+				<div class="col-auto" id="confirmPassword">
+				  <input type="password" class="form-control" placeholder="Confirm Password" required>
+				</div>
+
+			<div>
+				<button class="btn btn-primary" type="submit">Send Message</button>
+				<button class="btn btn-primary" type="reset">Clear Form</button>
+			</div>
+		</form>
 	</div>
 </main>
