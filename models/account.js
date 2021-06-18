@@ -3,7 +3,7 @@ let passportLocalMongoose = require('passport-local-mongoose');
 
 // create a model class
 
-let accountModel = mongoose.Schema({
+let Account = mongoose.Schema({
     username:{
         type: String,
         default: "",
@@ -39,6 +39,6 @@ let accountModel = mongoose.Schema({
 
 let options = ({missingPasswordError: 'Wrong / Missing Password'});
 
-user.plugin(passportLocalMongoose, options);
+Account.plugin(passportLocalMongoose, options);
 
 module.exports.Account = mongoose.model('Account', Account);

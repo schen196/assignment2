@@ -8,6 +8,9 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+
+// modules for authentication
+var session = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local');
 var locatStrategy = passportLocal.Strategy;
@@ -60,8 +63,18 @@ app.use(session({
 app.use(flash());
 
 // initialize passport
-app.use(passport,initialize());
+app.use(passport.initialize());
 app.use(passport.session());
+
+// passport user configuration
+
+// create a Account Model Instance
+let accountModel = require('../models/account');
+let Account = accountModel.Account;
+
+// serialize and deserialize the Account info
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 // error handler
 app.use(function (err, req, res, next) {
