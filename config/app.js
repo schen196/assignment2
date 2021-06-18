@@ -9,6 +9,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var passport = require('passport');
+var passportLocal = require('passport-local');
+var locatStrategy = passportLocal.Strategy;
+var flash = require('connect-flash');
 
 // database setup
 let mongoose = require("mongoose");
@@ -46,6 +49,20 @@ app.use(function (req, res, next) {
 	next(createError(404));
 });
 
+// setup express session
+app.use(session({
+	secret: "someSecret",
+	saveUninitialized: false,
+	resave: false
+}))
+
+// initialize flash
+app.use(flash());
+
+// initialize passport
+app.use(passport,initialize());
+app.use(passport.session());
+
 // error handler
 app.use(function (err, req, res, next) {
 	// set locals, only providing error in development
@@ -56,5 +73,7 @@ app.use(function (err, req, res, next) {
 	res.status(err.status || 500);
 	res.render("error");
 });
+
+
 
 module.exports = app;

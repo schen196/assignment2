@@ -6,6 +6,7 @@
 var express = require("express");
 var router = express.Router();
 
+
 /* GET home page. */
 router.get("/", (req, res) => {
 	res.render("pages/homepage");
@@ -36,9 +37,19 @@ router.get("/register", (req, res) => {
 	res.render("pages/register");
 });
 
+router.post('/register', (req, res) => {
+	req.body.username;
+});
+
 /* GET login page. */
 router.get("/login", (req, res) => {
 	res.render("pages/login");
 });
 
+
+router.post('/login', (req, res) => {
+
+});
+
+router.use(express.urlencoded({ extended: false}))
 module.exports = router;
