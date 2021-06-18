@@ -1,25 +1,36 @@
 <!-- register content -->
-<main class="container">
-	<!-- Message Area -->
-	
+<main>
 	<div class="row">
-		<div class="offset-md-4 col md-4">Please Login</div>
-		<form action="" method="POST" autocomplete="off">
-			<div class="row g-3">
-				<div class="col-auto" id="username">
-				  <input type="text" class="form-control" placeholder="Username" required>
-				</div>
-				<div class="col-auto" id="password">
-				  <input type="password" class="form-control" placeholder="Password" required>
-				</div>
-				<div class="col-auto" id="confirmPassword">
-				  <input type="password" class="form-control" placeholder="Confirm Password" required>
-				</div>
+		<div class="offset-md-4 col-md-4">
+			<h1 class="page-title">Register an Account</h1>
+			<form method="POST" action="" autocomplete="off" >
+				<fieldset class="form-group">
+					<label for="username">Username:</label>
+					<input type="text" class="form-control"
+					name="username" placeholder="Enter username"
+					id="username" required autofocus>
+				</fieldset>
 
-			<div>
-				<button class="btn btn-primary" type="submit">Send Message</button>
-				<button class="btn btn-primary" type="reset">Clear Form</button>
-			</div>
-		</form>
+				<fieldset class="form-group">
+					<label for="password">Password:</label>
+					<input type="password" class="form-control"
+					name="password" placeholder="Enter password"
+					id="password" required>
+				</fieldset>
+
+				<fieldset class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" class="form-control"
+					name="email" placeholder="JohnDoe@gmail.com"
+					id="email" required>
+				</fieldset>
+
+				<fieldset class="form-group text-right">
+					<input type="submit" class="btn btn-success" value="Register">
+					<a href="/">
+						<input type="button" class="btn btn-warning" value="Cancel">
+					</a>
+				</fieldset>
+			</form>
+		</div>
 	</div>
-</main>
