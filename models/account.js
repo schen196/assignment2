@@ -20,7 +20,7 @@ let accountModel = mongoose.Schema({
         type: String,
         default: '',
         trim: true,
-        required: "Email address is required.";
+        required: "Email address is required."
      },
      created:{
          type: Date,
@@ -37,8 +37,8 @@ let accountModel = mongoose.Schema({
 
 // configure options for account model
 
-let options ({missingPasswordError: 'Wrong / Missing Password'});
+let options = ({missingPasswordError: 'Wrong / Missing Password'});
 
 user.plugin(passportLocalMongoose, options);
 
-module.exports.Account = mongoose.model('Account', accountModel);
+module.exports.Account = mongoose.model('Account', Account);
