@@ -27,11 +27,19 @@ router.get("/services", indexController.displayServices);
 /* GET projects page. */
 router.get("/projects", indexController.displayProjects);
 	
-
 /* GET register page. */
 router.get("/register", indexController.displayRegister);
 
+/* POST Route for processing the Register page */
+router.post("/register", indexController.processRegisterPage);
+
 /* GET login page. */
 router.get("/login", indexController.displayLogin);
+
+/* POST Route for processing the Login page */
+router.post("/register", indexController.processLoginPage);
+
+/* GET to perform account logout */
+router.get("/logout", indexController.performLogout);
 
 module.exports = router;
