@@ -14,7 +14,7 @@ let Account = mongoose.Schema({
         type: String,
         default: "",
         trim: true,
-        required: "passpord is required"
+        required: "password is required"
      },
  	email:{
         type: String,
