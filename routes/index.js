@@ -9,6 +9,8 @@ let router = express.Router();
 
 let indexController = require("../controllers/index");
 
+// helper function for guard purposes
+
 /* GET home page. */
 router.get("/", indexController.displayHomePage);
 
