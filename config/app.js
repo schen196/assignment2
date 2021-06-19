@@ -48,7 +48,7 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.use("/", indexRouter);
-app.use('/', accountsRouter);
+app.use('/accounts', accountsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -74,6 +74,9 @@ app.use(passport.session());
 // create a Account Model Instance
 let accountModel = require('../models/account');
 let Account = accountModel.Account;
+
+// implement account authentication strategy
+passport.use(Account.createStrategy());
 
 // serialize and deserialize the Account info
 passport.serializeUser(Account.serializeUser());
