@@ -61,7 +61,7 @@ module.exports.processLoginPage = (req,res, next) => {
             if(err){
                 return next(err);
             }
-            return res.redirect("/");
+            return res.redirect("/contact-list");
         });
     })(req, res, next);
 }
@@ -71,12 +71,13 @@ module.exports.displayRegisterPage = (req, res, next) => {
     if(!req.account){
         res.render("pages/register",
         {
+            title: "Register",
             messages: req.flash("registerMessage", "Register an Account."),
             userName: req.account ? req.account.username : ""
         });
     }
     else{
-        return res.redirect("/");
+        return res.redirect("/contact-list");
     }
 }
 

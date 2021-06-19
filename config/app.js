@@ -16,7 +16,7 @@ var logger = require("morgan");
 var session = require('express-session');
 var passport = require('passport');
 var passportLocal = require('passport-local');
-var locatStrategy = passportLocal.Strategy;
+var locateStrategy = passportLocal.Strategy;
 var flash = require('connect-flash');
 
 // Instantiate an Express app and setup middlewares
@@ -39,14 +39,18 @@ app.set("view engine", "ejs");
 
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secretString'));
+app.use(express.urlencoded({ extended: false }));
 app.use(session({
     cookie: { maxAge: 60000 },
     saveUninitialized: false,
     resave: false,
     secret: "secretString"
 }));
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash());
 app.use(express.static(path.join(__dirname, "../public")));
 
@@ -66,16 +70,7 @@ app.use(function (req, res, next) {
 	next(createError(404));
 });
 
-// setup express session
-app.use(session({
-	secret: "someSecret",
-	saveUninitialized: false,
-	resave: false
-}))
 
-// initialize passport
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 // create a Account Model Instance
