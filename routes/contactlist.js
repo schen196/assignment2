@@ -12,9 +12,35 @@ router.get("/", (req, res, next) => {
             return console.error(err);
         }
         else {
-            res.render("pages/contactlist", {ContactList: ContactList});
+            res.render("contactlist/contactlist", {ContactList: ContactList});
         }
     });
+});
+
+
+/* GET Route for displaying the Add page - CREATE Operation */
+router.get("/add", (req, res, next) =>{
+
+});
+
+/* POST Route for processing the Add page - CREATE Operation */
+router.post("/add", (req, res, next) =>{
+
+});
+
+/* GET Route for displaying the Edit page - UPDATE Operation */
+router.get("/edit/:id", (req, res, next) =>{
+
+});
+
+/* POST Route for processing the Edit page - UPDATE Operation */
+router.post("/edit/:id", (req, res, next) =>{
+
+});
+
+/* GET Route for displaying the Delete page - DELETE Operation */
+router.get("/delete/:id", (req, res, next) =>{
+
 });
 
 module.exports = router;
