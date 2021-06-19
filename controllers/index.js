@@ -51,8 +51,8 @@ module.exports.processLoginPage = (req,res, next) => {
         if(err){
             return next(err);
         }
-        // is there a user login error?
-        if(!user){
+        // is there a account login error?
+        if(!account){
             req.flash("loginMessage", "Authentication Error");
             return res.redirect("pages/login");
         }
