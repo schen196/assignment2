@@ -3,8 +3,11 @@
 // Student Number: 301159710
 // Date: May 31, 2021
 
-var createError = require("http-errors");
+// express
 var express = require("express");
+
+// other dependencies
+var createError = require("http-errors");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
@@ -15,6 +18,9 @@ var passport = require('passport');
 var passportLocal = require('passport-local');
 var locatStrategy = passportLocal.Strategy;
 var flash = require('connect-flash');
+
+// Instantiate an Express app and setup middlewares
+var app = express();
 
 // database setup
 let mongoose = require("mongoose");
@@ -29,12 +35,11 @@ mongoDB.once("open", ()=>{
 	console.log("Connected to MongoDB...");
 });
 
+//routers
 var indexRouter = require("../routes/index");
 let accountsRouter = require("../routes/account");
 let contactRouter = require("../routes/contact");
 
-
-var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "../views"));
