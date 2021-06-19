@@ -82,7 +82,7 @@ router.post("/edit/:id", (req, res, next) =>{
     });
 });
 
-/* GET Route for displaying the Delete page - DELETE Operation */
+/* GET to perform deletion - DELETE Operation */
 router.get("/delete/:id", (req, res, next) =>{
     let id = req.params.id;
 
