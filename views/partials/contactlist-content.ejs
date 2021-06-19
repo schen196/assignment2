@@ -9,17 +9,27 @@
             <table class="table table-bordered table-striped tabel-hover">
                 <!-- Header Row -->
                 <tr class="d-flex">
-                    <th class="text-center">Contact Name:</th>
-                    <th class="text-center">Contact Number:</th>
-                    <th class="text-center">Email:</th>
+                    <th class="text-center col-1">Contact Name:</th>
+                    <th class="text-center col-2">Contact Number:</th>
+                    <th class="text-center col-3">Email:</th>
+                    <th class="text-center col-1"></th>
+                    <th class="text-center col-1"></th>
                 </tr>
 
                 <!-- Repeatable Template Row -->
                 <% for (let count = 0; count < ContactList.length; count++){ %>
-                    <tr class="d-flex">
-                        <td class="text-center"><%= ContactList[count].name %></td>
-                        <td class="text-center"><%= ContactList[count].number %></td>
-                        <td class="text-center"><%= ContactList[count].email %></td>
+                    <tr>
+                        <td class="text-center col-4"><%= ContactList[count].name %></td>
+                        <td class="text-center col-4"><%= ContactList[count].number %></td>
+                        <td class="text-center col-4"><%= ContactList[count].email %></td>
+                        <td class="text-center col-1">
+                            <a href="/book-list/edit/<&= ContactList[count]._id %>" class="btn btn-primary btn-xs">
+                            <i class="fas fa-pencil alt"></i>Edit</a>
+                        </td>
+                        <td class="text-center col-1">
+                            <a href="/book-list/delete/<&= ContactList[count]._id %>" class="btn btn-danger btn-xs">
+                            <i class="fas fa-trash alt"></i>Delete</a>
+                        </td>
                     </tr>
                 <% } %>
             </table>
