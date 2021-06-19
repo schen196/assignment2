@@ -43,8 +43,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secretString'));
 app.use(session({
     cookie: { maxAge: 60000 },
-    saveUninitialized: true,
-    resave: true,
+    saveUninitialized: false,
+    resave: false,
     secret: "secretString"
 }));
 app.use(flash());
