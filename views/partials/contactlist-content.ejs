@@ -20,8 +20,8 @@
                 <td class="text-center col-3"><%= ContactList[count].number %></td>
                 <td class="text-center col-4"><%= ContactList[count].email %></td>
                 <td class="text-center col-2">
-                    <a href="/book-list/edit/<&= ContactList[count]._id %>" class="btn btn-primary btn-xs">Edit</a>
-                    <a href="/book-list/delete/<&= ContactList[count]._id %>" class="btn btn-danger btn-xs">Delete</a>
+                    <a href="/contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-xs">Edit</a>
+                    <a href="/contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-xs">Delete</a>
                 </td>
             </tr>
         <% } %>
