@@ -73,13 +73,10 @@ app.use(session({
 	resave: false
 }))
 
-
-
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// passport user configuration
 
 // create a Account Model Instance
 let accountModel = require('../models/account');
@@ -104,5 +101,9 @@ app.use(function (err, req, res, next) {
 });
 
 connectToMongoDB();
+
+module.exports = function (req, res, next) {
+	res.locals.message = req.session.message || [];
+}
 
 module.exports = app;

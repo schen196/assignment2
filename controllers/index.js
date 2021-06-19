@@ -67,11 +67,10 @@ module.exports.processLoginPage = (req,res, next) => {
 }
 
 module.exports.displayRegisterPage = (req, res, next) => {
-    // check if the user is not already logged in
+    // check if the account is not already logged in
     if(!req.account){
         res.render("pages/register",
         {
-            title: "Register",
             messages: req.flash("registerMessage", "Register an Account."),
             userName: req.account ? req.account.username : ""
         });
@@ -82,7 +81,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
-    // instantiate a user object
+    // instantiate a account object
     let newAccount = new Account({
         username: req.body.username,
         password: req.body.password,
@@ -92,13 +91,14 @@ module.exports.processRegisterPage = (req, res, next) => {
 
     Account.register(newAccount, req.body.password, (err, account) => {
         if(err){
-            console.log("Error: Inserting New User");
-            if(err.name == "AccountExistsError"){
+            console.log("Error: Inserting New Account");
+            console.log(err.name);
+            if(err.name == "UserExistsError"){
                 req.flash(
                     "registerMessage",
-                    "Registration Error: User Already Exists!"
+                    "Registration Error: Account Already Exists!"
                 );
-                console.log("Error: User Already Exists!");
+                console.log("Error: Account Already Exists!");
             }
             return res.render("pages/register",
             {
@@ -110,7 +110,7 @@ module.exports.processRegisterPage = (req, res, next) => {
         else
         {
             // if no error exists, then registration is successful
-            // redirect the user and authenticate them
+            // redirect the account and authenticate them
 
             return passport.authenticate("local")(req, res, () => {
                 res.redirect("/")
