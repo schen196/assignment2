@@ -61,8 +61,7 @@ app.use(session({
 	resave: false
 }))
 
-// initialize flash
-app.use(flash());
+
 
 // initialize passport
 app.use(passport.initialize());
