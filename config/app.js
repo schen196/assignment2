@@ -41,9 +41,21 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secretString'));
-app.use(session({cookie: { maxAge: 60000 }}));
+app.use(session({
+    cookie: { maxAge: 60000 },
+    saveUninitialized: true,
+    resave: true,
+    secret: "secretString"
+}));
 app.use(flash());
 app.use(express.static(path.join(__dirname, "../public")));
+
+app.use(function(req, res, next){
+    // if there's a flash message in the session request, make it available in the response, then delete it
+    res.locals.sessionFlash = req.session.sessionFlash;
+    delete req.session.sessionFlash;
+    next();
+});
 
 app.use("/", indexRouter);
 app.use('/accounts', accountsRouter);
