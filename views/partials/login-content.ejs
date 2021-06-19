@@ -1,5 +1,10 @@
 <!-- login content -->
 <main>
+	<% if (locals.messages) { %>
+		<div class="alert alert-danger">
+			<%= messages %>
+		</div>
+	<% } %>
 	<div class="jumbotron">
 		<div class="row">
 			<div class="offset-md-4 col-md-4">

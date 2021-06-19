@@ -54,11 +54,12 @@ module.exports.processLoginPage = (req,res, next) => {
         // is there a account login error?
         if(!account){
             req.flash("loginMessage", "Authentication Error");
-            return res.redirect("pages/login");
+            return res.redirect("/login");
         }
         req.login(account, (err) => {
             //server error?
             if(err){
+                console.log("im here");
                 return next(err);
             }
             return res.redirect("/contact-list");
