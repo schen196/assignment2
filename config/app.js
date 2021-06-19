@@ -24,16 +24,8 @@ var app = express();
 
 // database setup
 let mongoose = require("mongoose");
-let DB = require("./db");
+let connectToMongoDB = require("./db");
 
-// point mongoose to the DB URI
-mongoose.connect(DB.URI, {useNewUrlParser: true,  useUnifiedTopology: true });
-
-let mongoDB = mongoose.connection;
-mongoDB.on("error", console.error.bind(console, "Connection Error:"));
-mongoDB.once("open", ()=>{
-	console.log("Connected to MongoDB...");
-});
 
 //routers
 var indexRouter = require("../routes/index");
@@ -100,6 +92,6 @@ app.use(function (err, req, res, next) {
 	res.render("error");
 });
 
-
+connectToMongoDB();
 
 module.exports = app;
