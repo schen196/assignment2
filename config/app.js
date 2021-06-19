@@ -29,7 +29,6 @@ let connectToMongoDB = require("./db");
 
 //routers
 var indexRouter = require("../routes/index");
-let accountsRouter = require("../routes/account");
 let contactRouter = require("../routes/contact");
 
 
@@ -62,7 +61,6 @@ app.use(function(req, res, next){
 });
 
 app.use("/", indexRouter);
-app.use('/accounts', accountsRouter);
 app.use("/contact-list", contactRouter);
 
 // catch 404 and forward to error handler
