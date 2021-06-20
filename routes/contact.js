@@ -25,7 +25,7 @@ router.get("/", (req, res, next) => {
 
 /* GET Route for displaying the Add page - CREATE Operation */
 router.get("/add", (req, res, next) =>{
-    res.render("contactlist/add", {title: "Add Contact"});
+    res.render("contactlist/add", {title: "Add Contact", loggedInUser: getLoggedInUser()});
 });
 
 /* POST Route for processing the Add page - CREATE Operation */
