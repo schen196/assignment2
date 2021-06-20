@@ -4,33 +4,34 @@ let router = express.Router();
 let mongoose = require("mongoose");
 let passport = require("passport");
 
+let loggedInUser = null;
 
 // create the account model instance
 let accountModel = require("../models/account");
 let Account = accountModel.Account; // alias
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render("pages/homepage");
+    res.render("pages/homepage", {loggedInUser});
 }
 
 module.exports.displayAbout = (req, res, next) => {
-	res.render("pages/about");
+	res.render("pages/about", {loggedInUser});
 };
 
 module.exports.displayContact = (req, res, next) => {
-	res.render("pages/contact");
+	res.render("pages/contact", {loggedInUser});
 };
 
 module.exports.displayServices = (req, res, next) => {
-    res.render("pages/services");
+    res.render("pages/services", {loggedInUser});
 };
 
 module.exports.displayProjects = (req, res, next) => {
-    res.render("pages/projects");
+    res.render("pages/projects", {loggedInUser});
 };
 
 module.exports.displayRegister = (req, res, next) => {
-    res.render("pages/register");
+    res.render("pages/register", {loggedInUser});
 };
 
 module.exports.displayLogin = (req, res, next) => {
@@ -38,12 +39,27 @@ module.exports.displayLogin = (req, res, next) => {
         res.render("pages/login", {
             title: "Login",
             messages: req.flash("loginMessage"),
-            userName: req.account ? req.account.username : ""
+            loggedInUser
         })
     } else {
         return res.redirect('/');
     }
 };
+
+module.exports.displayContactList = (req, res, next) => {
+    Account.find((err, contactList) => {
+        if(err){
+            return console.error(err);
+        } 
+        else 
+        {
+            res.render("/contact-list",{
+                title: "ContactList",
+                ContactList : contactList,
+                loggedInUser});
+        }
+    });
+}
 
 module.exports.processLoginPage = (req,res, next) => {
     passport.authenticate("local", (err, account, info) => {
@@ -59,7 +75,6 @@ module.exports.processLoginPage = (req,res, next) => {
         req.login(account, (err) => {
             //server error?
             if(err){
-                console.log("im here");
                 return next(err);
             }
             return res.redirect("/contact-list");
@@ -74,10 +89,11 @@ module.exports.displayRegisterPage = (req, res, next) => {
         {
             title: "Register",
             messages: req.flash("registerMessage", "Register an Account."),
-            userName: req.account ? req.account.username : ""
+            loggedInUser
         });
     }
     else{
+        
         return res.redirect("/contact-list");
     }
 }
@@ -94,7 +110,6 @@ module.exports.processRegisterPage = (req, res, next) => {
     Account.register(newAccount, req.body.password, (err, account) => {
         if(err){
             console.log("Error: Inserting New Account");
-            console.log(err.name);
             if(err.name == "UserExistsError"){
                 req.flash(
                     "registerMessage",
@@ -106,7 +121,7 @@ module.exports.processRegisterPage = (req, res, next) => {
             {
                 title: "Register",
                 messages: req.flash("registerMessage"),
-                userName: req.account ? req.account.username : ""
+                loggedInUser
             });
         }
         else

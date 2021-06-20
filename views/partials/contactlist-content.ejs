@@ -12,7 +12,14 @@
             <th class="text-center col-4">Email:</th>
             <th class="text-center col-2">Actions</th>
         </tr>
-
+        <% if(ContactList.length > 1){
+            var sort = { name: 1 };
+            db.collection("username").find().sort(sort).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);
+                db.close();
+            });
+        }  %>
         <!-- Repeatable Template Row -->
         <% for (let count = 0; count < ContactList.length; count++){ %>
             <tr class="row align-items-center">
