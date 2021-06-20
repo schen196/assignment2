@@ -15,6 +15,13 @@ router.get("/", (req, res, next) => {
             res.render("contactlist/contact", {ContactList: ContactList});
         }
     });
+    contact.aggregate([
+        { "$project":{
+            "name": -1,
+            "lowername": {"$toLower": "$name"}
+        }},
+        {"$sort": {"lowername": -1}}
+    ]);
 });
 
 
