@@ -1,29 +1,33 @@
 <!-- Main Content -->
 <main>
-    <h1>Contact List</h1>
-
-    <a href="/contact-list/add" class="btn btn-primary col-2 mb-3 mx-2" role="button">Add a contact</a>
-    
-    <table class="container table table-bordered table-striped table-hover">
-        <!-- Header Row -->
-        <tr class="row align-items-center">
-            <th class="text-center col-3">Contact Name:</th>
-            <th class="text-center col-3">Contact Number:</th>
-            <th class="text-center col-4">Email:</th>
-            <th class="text-center col-2">Actions</th>
-        </tr>
-
-        <!-- Repeatable Template Row -->
-        <% for (let count = 0; count < ContactList.length; count++){ %>
-            <tr class="row align-items-center">
-                <td class="text-center col-3"><%= ContactList[count].name %></td>
-                <td class="text-center col-3"><%= ContactList[count].number %></td>
-                <td class="text-center col-4"><%= ContactList[count].email %></td>
-                <td class="text-center col-2">
-                    <a href="/contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-xs">Edit</a>
-                    <a href="/contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-xs">Delete</a>
-                </td>
-            </tr>
-        <% } %>
-    </table>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Contact List</h1>
+        
+            <a href="/contact-list/add" class="btn btn-primary col-2 mb-3 mx-2" role="button">Add a contact</a>
+            
+            <table class="container table table-bordered table-striped table-hover">
+                <!-- Header Row -->
+                <tr class="row align-items-center">
+                    <th class="text-center col-3">Contact Name:</th>
+                    <th class="text-center col-3">Contact Number:</th>
+                    <th class="text-center col-4">Email:</th>
+                    <th class="text-center col-2">Actions</th>
+                </tr>
+        
+                <!-- Repeatable Template Row -->
+                <% for (let count = 0; count < ContactList.length; count++){ %>
+                    <tr class="row align-items-center">
+                        <td class="text-center col-3"><%= ContactList[count].name %></td>
+                        <td class="text-center col-3"><%= ContactList[count].number %></td>
+                        <td class="text-center col-4"><%= ContactList[count].email %></td>
+                        <td class="text-center col-2">
+                            <a href="/contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-xs">Edit</a>
+                            <a href="/contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-xs">Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </div>
 </main>

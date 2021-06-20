@@ -39,8 +39,8 @@ Date: May 31, 2021 -->
 					<li class="nav-item">
 						<a class="nav-link" href="/login">Login</a>
 					</li> -->
-					<% if(null) {%>
-						<li class="navbar-text">Welcome, <%= account.username %>!</li>
+					<% if(loggedInUser) {%>
+						<li class="navbar-text">Welcome, <%= loggedInUser.username %>!</li>
 						<li class="nav-item"><a href="=/contact-ist" class="nav-link">Contact List</a></li>
 						<li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
 					<%} else { %>

@@ -2,6 +2,8 @@ let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");
 
+let loggedInUser = null;
+
 // connect to contact model
 let contact = require("../models/contact");
 
@@ -12,7 +14,7 @@ router.get("/", (req, res, next) => {
             return console.error(err);
         }
         else {
-            res.render("contactlist/contact", {ContactList: ContactList});
+            res.render("contactlist/contact", {ContactList: ContactList, loggedInUser});
         }
     });
     contact.aggregate([
@@ -61,7 +63,7 @@ router.get("/edit/:id", (req, res, next) =>{
         }
         else{
             // show the edit view
-            res.render("contactlist/edit", {title: "Edit Contact", contact: contactToEdit})
+            res.render("contactlist/edit", {title: "Edit Contact", contact: contactToEdit, loggedInUser})
         }
     });
 });
