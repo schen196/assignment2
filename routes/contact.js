@@ -2,25 +2,26 @@ let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");
 
-let loggedInUser = null;
-
 // connect to contact model
 let contact = require("../models/contact");
+const { getLoggedInUser } = require("../controllers/index");
 
 /* GET Route for contact list page - READ Operation */
 router.get("/", (req, res, next) => {
+    if(!getLoggedInUser()) {
+        return res.redirect("/login");
+    }
     contact.find((err, ContactList) => {
         if (err){
             return console.error(err);
         }
         else {
-            res.render("contactlist/contact", {ContactList: ContactList, loggedInUser});
+            res.render("contactlist/contact", {ContactList, loggedInUser: getLoggedInUser()});
         }
     }).collation({locale: "en" })
     .sort({name: 1})
     .exec();
 });
-
 
 /* GET Route for displaying the Add page - CREATE Operation */
 router.get("/add", (req, res, next) =>{
@@ -58,7 +59,7 @@ router.get("/edit/:id", (req, res, next) =>{
         }
         else{
             // show the edit view
-            res.render("contactlist/edit", {title: "Edit Contact", contact: contactToEdit, loggedInUser})
+            res.render("contactlist/edit", {title: "Edit Contact", contact: contactToEdit, loggedInUser: getLoggedInUser()})
         }
     });
 });

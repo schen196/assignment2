@@ -95,8 +95,4 @@ app.use(function (err, req, res, next) {
 
 connectToMongoDB();
 
-module.exports = function (req, res, next) {
-	res.locals.message = req.session.message || [];
-}
-
 module.exports = app;

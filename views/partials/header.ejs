@@ -40,9 +40,9 @@ Date: May 31, 2021 -->
 						<a class="nav-link" href="/login">Login</a>
 					</li> -->
 					<% if(loggedInUser) {%>
-						<li class="navbar-text">Welcome, <%= loggedInUser.username %>!</li>
-						<li class="nav-item"><a href="=/contact-ist" class="nav-link">Contact List</a></li>
+						<li class="nav-item"><a href="/contact-list" class="nav-link">Contact List</a></li>
 						<li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+						<li class="navbar-text">Welcome, <%= loggedInUser.username %>!</li>
 					<%} else { %>
 						<li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
 					<% }%>

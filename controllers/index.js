@@ -10,6 +10,8 @@ let loggedInUser = null;
 let accountModel = require("../models/account");
 let Account = accountModel.Account; // alias
 
+module.exports.getLoggedInUser = () => loggedInUser;
+
 module.exports.displayHomePage = (req, res, next) => {
     res.render("pages/homepage", {loggedInUser});
 }
@@ -38,7 +40,6 @@ module.exports.displayLogin = (req, res, next) => {
     if(!req.Account){
         res.render("pages/login", {
             title: "Login",
-            messages: req.flash("loginMessage"),
             loggedInUser
         })
     } else {
@@ -46,23 +47,9 @@ module.exports.displayLogin = (req, res, next) => {
     }
 };
 
-module.exports.displayContactList = (req, res, next) => {
-    Account.find((err, contactList) => {
-        if(err){
-            return console.error(err);
-        } 
-        else 
-        {
-            res.render("/contact-list",{
-                title: "ContactList",
-                ContactList : contactList,
-                loggedInUser});
-        }
-    });
-}
 
 module.exports.processLoginPage = (req,res, next) => {
-    passport.authenticate("local", (err, account, info) => {
+    passport.authenticate("local", (err, account) => {
         //server error?
         if(err){
             return next(err);
@@ -70,14 +57,19 @@ module.exports.processLoginPage = (req,res, next) => {
         // is there a account login error?
         if(!account){
             req.flash("loginMessage", "Authentication Error");
-            return res.redirect("/login");
+            return res.render("pages/login", {
+                title: "Login",
+                messages: req.flash("loginMessage"),
+                loggedInUser
+            })
         }
         req.login(account, (err) => {
             //server error?
             if(err){
                 return next(err);
             }
-            return res.redirect("/contact-list");
+            loggedInUser = account;
+            return res.redirect('/contact-list');
         });
     })(req, res, next);
 }
@@ -115,7 +107,6 @@ module.exports.processRegisterPage = (req, res, next) => {
                     "registerMessage",
                     "Registration Error: Account Already Exists!"
                 );
-                console.log("Error: Account Already Exists!");
             }
             return res.render("pages/register",
             {
@@ -138,5 +129,6 @@ module.exports.processRegisterPage = (req, res, next) => {
 
 module.exports.performLogout = (req, res, next) => {
     req.logout();
+    loggedInUser = null;
     res.redirect("/");
 }

@@ -22,7 +22,7 @@ router.get("/contact", indexController.displayContact);
 
 /* GET services page. */
 router.get("/services", indexController.displayServices);
-	
+
 
 /* GET projects page. */
 router.get("/projects", indexController.displayProjects);
