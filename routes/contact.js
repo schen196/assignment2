@@ -16,14 +16,9 @@ router.get("/", (req, res, next) => {
         else {
             res.render("contactlist/contact", {ContactList: ContactList, loggedInUser});
         }
-    });
-    contact.aggregate([
-        { "$project":{
-            "name": -1,
-            "lowername": {"$toLower": "$name"}
-        }},
-        {"$sort": {"lowername": -1}}
-    ]);
+    }).collation({locale: "en" })
+    .sort({name: 1})
+    .exec();
 });
 
 
